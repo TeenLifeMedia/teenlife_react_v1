@@ -1,0 +1,38 @@
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": [
+    "@babel/plugin-transform-async-to-generator",
+    "transform-react-remove-prop-types",
+    [
+      "transform-imports",
+      {
+        "lodash": {
+          "transform": "lodash/${member}",
+          "preventFullImport": true
+        }
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        [
+          "@babel/plugin-transform-runtime",
+          {
+            "regenerator": true
+          }
+        ]
+      ]
+    },
+    "production": {
+      "plugins": [
+        [
+          "remove-test-ids",
+          {
+            "attributes": ["data-testid"]
+          }
+        ]
+      ]
+    }
+  }
+}
